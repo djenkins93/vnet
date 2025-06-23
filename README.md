@@ -23,6 +23,30 @@ VoidNet (vnet) is a lightweight shell-based utility designed to create a tempora
 	sudo vnet --forensics-off # Stop forensic capture
 	sudo vnet --status        # Show NIC, IPs, DNS, and routing
 	sudo vnet --repair        # Attempt forced connectivity restore
+ # Scenarios
+ ## 1. Safe Malware & Suspicious Binary Analysis
+Create a controlled, airgapped sandbox to execute potentially malicious software.  
+`vnet` ensures no outbound network traffic escapes while optionally logging or blackholing connection attempts — ideal for reversing C2 behavior or identifying hidden telemetry.
+
+- **Perfect for:** Malware analysts, threat researchers, security labs  
+- **Benefit:** Prevents data leaks while revealing stealthy network behavior
+
+---
+
+## 2. Penetration Testing in Airgapped or Zero-Trust Conditions
+Simulate hostile network conditions where no outbound connections are allowed — useful for testing fallback logic, persistence mechanisms, or C2 evasion strategies in red team ops.
+
+- **Perfect for:** Pentesters, red teamers, adversary simulation  
+- **Benefit:** Realistic zero-trust environment without needing a physical airgap
+
+---
+
+## 3. Privacy-Aware Software & Telemetry Auditing
+Analyze the hidden network behavior of closed-source or commercial software. `vnet` silently blocks all real traffic while optionally logging all attempted connections — ideal for catching unauthorized data exfiltration or telemetry.
+
+- **Perfect for:** Privacy advocates, OSS reviewers, security auditors  
+- **Benefit:** Discover hidden "phone home" behavior with zero data leakage
+
 
 # Requirements
     • Bash/sh compatible shell
