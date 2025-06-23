@@ -1,4 +1,4 @@
-# vNet
+# vNet (VoidNet)
 A minimalist, stealth-focused airgap and network isolation utility for Linux.
 
 VoidNet (vnet) is a lightweight shell-based utility designed to create a temporary or on-demand airgapped environment with advanced monitoring and forensic capabilities. It isolates the host from outbound network traffic while optionally logging any connection attempts or analyzing suspicious traffic. Ideal for pentesters, digital forensics professionals, and privacy enthusiasts.
@@ -15,18 +15,17 @@ VoidNet (vnet) is a lightweight shell-based utility designed to create a tempora
     • Extremely fast deployment and rollback with CLI flags
 
 # Usage
-Run Interactively:  sudo ./vnet
-Run via CLI flags: 
-	sudo vnet --on           # Activate airgap
-	sudo vnet --off          # Deactivate airgap
-	sudo vnet --monitor      # Monitor outbound kernel traffic
-	sudo vnet --forensics-on # Start tcpdump + ngrep session
-	sudo vnet --forensics-off# Stop forensic capture
-	sudo vnet --status       # Show NIC, IPs, DNS, and routing
-	sudo vnet --repair       # Attempt forced connectivity restore
+	sudo ./vnet		  # run in interactive tui 
+	sudo vnet --on            # Activate airgap + blackhole routing  
+	sudo vnet --off           # Deactivate airgap and blackhole route
+	sudo vnet --monitor       # Monitor outbound kernel traffic
+	sudo vnet --forensics-on  # Start tcpdump + ngrep session
+	sudo vnet --forensics-off # Stop forensic capture
+	sudo vnet --status        # Show NIC, IPs, DNS, and routing
+	sudo vnet --repair        # Attempt forced connectivity restore
 
 # Requirements
-	Bash/sh compatible shell
+    • Bash/sh compatible shell
     • Linux with iproute2, iptables, tcpdump, ngrep
     • Root privileges (required for network control)
     • Recommended: Void Linux (musl) or other minimal distributions
