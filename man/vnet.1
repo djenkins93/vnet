@@ -1,0 +1,83 @@
+.TH VNET 1 "June 2025" "VoidNet Manual" "User Commands"
+.SH NAME
+vnet - minimalist airgap and blackhole routing utility for Linux
+
+.SH SYNOPSIS
+.B vnet
+.RI \[ options ]
+
+.SH DESCRIPTION
+.B VoidNet (vnet)
+is a lightweight shell-based security tool that simulates an airgapped environment by blackhole-routing all outbound traffic and unloading NIC modules. It provides advanced traffic monitoring via tcpdump and ngrep, DNS flushing, and a robust restoration process.
+
+.SH OPTIONS
+.TP
+.BR --on
+Activate the airgap: flush DNS, unload NICs, and apply blackhole routing.
+.TP
+.BR --off
+Deactivate the airgap: reload NICs, restore routes and DNS.
+.TP
+.BR --monitor
+Start live monitoring of outbound traffic from kernel logs.
+.TP
+.BR --forensics-on
+Start forensic capture mode (tcpdump + ngrep).
+.TP
+.BR --forensics-off
+Stop forensic capture processes.
+.TP
+.BR --status
+Display current network status: interfaces, DNS, routing table.
+.TP
+.BR --repair
+Attempt forceful recovery of NIC and restore connectivity.
+.TP
+.BR --help
+Show usage instructions and available options.
+
+.SH USAGE
+Run interactively with elevated privileges:
+.BR
+sudo ./vnet
+
+Run via command line flag:
+.BR
+sudo vnet --on
+
+.SH FILES
+.TP
+.I /tmp/vnet.pid
+Temporary PID tracking for forensic monitoring.
+.TP
+.I /etc/resolv.conf
+Temporarily backed up and restored during DNS flush/repair.
+
+.SH REQUIREMENTS
+.TP
+Linux OS with iproute2, iptables, tcpdump, ngrep
+.TP
+Root privileges for network modification
+.TP
+Recommended: Void Linux (musl), Debian, Alpine, or compatible minimal distro
+
+.SH BUGS
+If NICs do not restore, run:
+.B sudo dhcpcd -d
+and manually verify:
+.B ip link show
+
+.SH AUTHOR VoidNet was developed by \[D. Jenkins] a secure and minimalist Linux containment utility for privacy-focused and forensic workflows.
+
+.SH SEE ALSO
+.BR ip (8),
+.BR iptables (8),
+.BR tcpdump (1),
+.BR ngrep (1),
+.BR resolv.conf (5)
+
+.SH LICENSE
+MIT License
+
+.SH DISCLAIMER
+VoidNet is provided for educational and ethical security use only. Use responsibly.
